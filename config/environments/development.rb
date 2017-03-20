@@ -12,12 +12,11 @@ Rails.application.configure do
   # Show full error reports.
   config.consider_all_requests_local = true
 
+  config.action_mailer.default_url_options = { :host => "https://galleriadephotos.herokuapp.com/" }
+
   # Enable/disable caching. By default caching is disabled.
   if Rails.root.join('tmp/caching-dev.txt').exist?
     config.action_controller.perform_caching = true
-
-    config.action_mailer.default_url_options = { :host => "localhost:3000" }
-
 
     config.cache_store = :memory_store
     config.public_file_server.headers = {
@@ -44,6 +43,7 @@ Rails.application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+
 
   # Suppress logger output for asset requests.
   config.assets.quiet = true

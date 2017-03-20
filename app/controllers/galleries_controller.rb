@@ -1,12 +1,17 @@
 class GalleriesController < ApplicationController
-  before_action :find_gallery, only: [:edit, :show, :update, :share, :share_email]
-  before_action :require_user, only: [:edit, :update]
+  before_action :load_gallery, only: [:edit, :show, :update]
+  before_action :require_user, only: [:new, :edit, :update]
   before_action :is_owner, only: [:destroy]
 
   def index
-    @galleries = Gallery.order(created_at: :desc).page(params[:page])
-    @users = User.joins(:galleries).order(created_at: :desc).limit(5)
-    render 'galleries/index.html.erb'
+    if current_user
+      @galleries = current_user.galleries
+      @gallery = Gallery.new unless @galleries.any?
+    else
+      @galleries = Gallery.order(created_at: :desc).page(params[:page])
+      @users = User.joins(:galleries).order(created_at: :desc).limit(5)
+      render 'galleries/index.html.erb'
+    end
   end
 
   def home
@@ -15,19 +20,25 @@ class GalleriesController < ApplicationController
   end
 
   def new
-    @gallery = Gallery.new
+    if current_user
+      @gallery = Gallery.new
+    else
+      flash[:danger] = "You are not logged in."
+      redirect_to :root
+    end
+
   end
 
   def show
-    # find_gallery
+    @gallery = Gallery.includes(:photos).find(params[:id])
   end
 
   def edit
-    # find_gallery
+    # load_gallery
   end
 
   def update
-    # find_gallery
+    # load_gallery
     if @gallery.update(gallery_params)
       redirect_to @gallery
     else
@@ -45,34 +56,22 @@ class GalleriesController < ApplicationController
   end
 
   def destroy
-    # find_gallery
+    # load_gallery
     @gallery.destroy
     redirect_to :root
-  end
-
-  def share
-
-  end
-
-  def email
-    # if params[:share][:email]
-    UserMailer.share(params[:id], params[:share][:email]).deliver
-    # flash[:success] = "Gallery was shared with "
-    redirect_to @gallery
   end
 
   private
 
   def gallery_params
-    params.require(:galleries).permit(:user_id, :title, :summary, :email, :main_image)
+    params.require(:galleries).permit(:user_id, :title, :summary, :email, :main_image, :gallery_id)
   end
 
-  def find_gallery
+  def load_gallery
     @gallery = Gallery.find(params[:id])
   end
 
   def is_owner
-    find_gallery
     unless @gallery.user == current_user
       flash[:danger] = "You are not the creator of this Gallery."
       redirect_to :root

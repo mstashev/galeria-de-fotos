@@ -1,5 +1,6 @@
 class PhotosController < ApplicationController
-  before_action :find_photo, only: [:edit, :show, :update, :share, :share_email]
+  before_action :find_gallery, only: [:edit, :show, :update]
+  before_action :find_photo, only: [:edit, :show, :update]
   before_action :require_user, only: [:edit, :show, :update]
   before_action :is_owner, only: [:destroy]
 
@@ -45,24 +46,17 @@ class PhotosController < ApplicationController
     redirect_to :root
   end
 
-  def share
-
-  end
-
-  def email
-    # if params[:share][:email]
-    UserMailer.share(params[:id], params[:share][:email]).deliver
-    # flash[:success] = "Photo was shared with "
-    redirect_to @photo
-  end
-
   private
 
   def photo_params
     params.require(:photo).permit(:gallery_id, :image, :caption, :name, :email)
   end
 
-  def find_gall
+  def find_gallery
+    @gallery = Gallery.find(params[:gallery_id])
+  end
+
+  def find_photo
     @photo = Photo.find(params[:id])
   end
 

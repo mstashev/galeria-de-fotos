@@ -8,7 +8,7 @@
       <div class="row p-top" id="p-no-margin">
         <%= render 'form', post: @gallery %><br>
         <br>
-        <%= link_to ' Show', @gallery %> | <%= link_to ' Back', galleriess_path %>
+        <%= link_to ' Show', @gallery, class: 'btn btn-primary glyphicon glyphicon-eye-open' %><%= link_to ' Back', galleries_path, class: 'btn btn-primary glyphicon glyphicon-arrow-left' %>
       </div>
     </div>
   </div>

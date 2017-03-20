@@ -2,18 +2,20 @@
   <p id="notice"><%= notice %></p>
 
   <h1>Galleries</h1>
-  <%= paginate @galleries %>
 
-
-  <% @galleries.each do |gallery| %>
-    <% render partial: "galleries/gallery", locals: {post: gallery} %>
+  <% if @galleries.any? %>
+    <%= render @galleries %>
+    <br>
+    <div class="col-xs-12">
+      <%= link_to ' New Gallery', new_gallery_path, class: 'btn btn-primary glyphicon glyphicon-plus'%>
+    </div>
+  <% else %>
+    <div class="col-xs-12">
+      You don't appear to have any galleries yet.
+    </div>
+    <br>
+    <div class="col-xs-12">
+      <%= link_to ' New Gallery', new_gallery_path, class: 'btn btn-primary glyphicon glyphicon-plus'%>
+    </div>
   <% end %>
-
-  <%= render @galleries %>
-
-  <%= paginate @galleries %>
-  <br>
-  <div class="col-xs-12">
-    <%= link_to 'New GAllery', new_gallery_path %>
-  </div>
 </div>

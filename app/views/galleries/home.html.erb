@@ -1,60 +1,21 @@
 <div class="container">
-  <p id="notice"><%= notice %></p>
-  <div class="row section-margin section">
-    <div class="col-sm-8">
-      <div class="row">
-        <%= image_tag @gallery.main_image, class: "media-object" %>
-      </div>
-      <div class="row">
-        <h1 class="home-post-title"><a href="/galleries/<%= @gallery.id %>"><%= @gallery.title.upcase %></a></h1>
-        <p class="col-sm-3 hdr-p">
-          <%= image_tag @gallery.user.personage, class: "media-object img-circle avatar" %>
-          <span id="user"><a href="users/<%= @gallery.user.id %>"><%= @gallery.user.name %></span>
-        </p>
-        <p class="col-sm-5 date hdr-p">
-          on <a class="date" href="#"><%= @gallery.created_at.to_formatted_s(:long_ordinal) %></a>
-        </p>
-      </div>
-      <div class="row p-top" id="p-no-margin">
-        <p>
-          <%= simple_format(@gallery.summary) %>
-        </p>
-      </div>
-      <div class="lw-links">
-        <a href="#"><i class="glyphicon glyphicon-comment"></i><span>Read Comments</span></a>
-        <a href="#"><i class="glyphicon glyphicon-cloud-upload"></i><span>Upload</span></a>
-        <a href="#" id="blue-a"><i class="glyphicon glyphicon-share" id="blue-share"></i><span>Share this gallery</span></a>
-      </div>
+  <div class="row">
+    <div class="col-xs-12" style="text-align:center;">
+      <br>
+      <br>
+      <br>
+      <br>
+      <h1>For all of your Digital Photography Hosting needs.</h1><br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
     </div>
-    <div class="col-sm-4">
-      <div class="row tp-lt-portrait text-center">
-        <%= image_tag @gallery.user.personage, class: "media-object, img-circle" %>
-        <h4><a href="users/<%= @gallery.user.id %>"><%= @gallery.user.name %></h4>
-      </div>
-      <div class="row tp-lt-scl-media text-center">
-        <p>Twitter</p>
-        <p>Facebook</p>
-        <p>Instagram</p>
-      </div>
-      <div class="row tp-lt-ad">
-        <div class="text-center">
-          <%= image_tag  "surf-boarding.jpg", class: "media-object" %>
-        </div>
-        <div class="text-right">
-            <a class="date" href="#">About this Ad</a>
-        </div>
-      </div>
-      <div class="row bm-lt-p .rt-sct-container">
-          <h3>SideBar Section Heading</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur nemo harum, inventore tempore consequuntur perferendis unde impedit repellat esse nulla magnam pariatur alias assumenda cupiditate a, itaque eum, <a href="#" class="date">chic mistape</a>.</p>
-      </div>
-    </div>
-  </div>
-  <hr>
-
-  <br>
-
-  <div class="col-xs-12">
-    <%= link_to 'New Gallery', new_gallery_path %>
   </div>
 </div>

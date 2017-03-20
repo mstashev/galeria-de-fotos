@@ -2,10 +2,13 @@
   <p id="notice"><%= notice %></p>
   <div class="row section-margin section">
     <div class="col-sm-8">
+      <div class="row media-body photo">
+        <%= image_tag photo.image, class: "img-responsive", alt: photo.name %>
+      </div>
       <div class="row">
-        <h1 class="home-photo-title"><%= photo.name %></h1>
+        <h1 class="home-post-title"><a href="/galleries/<%= photo.gallery_id %>/photos/<%= photo.id %>" target="_blank"><%= photo.name %></a></h1>
         <p class="col-sm-4 hdr-p">
-          <%= image_tag photo.user.personage, class: "media-object, img-circle" %>
+          <%= image_tag photo.user.personage, class: "media-object, img-circle, avatar" %>
           <span id="user"><a href="/users/<%= photo.user.id %>"><%= photo.user.name %></a></span>
         </p>
         <p class="col-sm-4 date hdr-p">
@@ -17,18 +20,12 @@
           <%= simple_format(photo.caption) %>
         </p>
       </div>
-      <div class="media-right photo">
-        <%= image_tag photo.versions[:thumb].url, class: "img-responsive", alt: photo.title %>
-      </div>
       <div class="lw-links">
-        <a href="#"><i class="glyphicon glyphicon-comment"></i><span>Read Comments</span></a>
-        <a href="#"><i class="glyphicon glyphicon-cloud-upload"></i><span>Upload</span></a>
         <a href="/posts/<%= photo.id %>/share" id="blue-a"><i class="glyphicon glyphicon-envelope" id="blue-share"></i><span>Share this photo</span></a>
+        <% if photo.is_owner?(current_user) %>
+          <%= link_to ' Edit', edit_gallery_photo_path(@gallery, photo), class: "btn btn-primary glyphicon glyphicon-edit" %> <%= link_to ' Delete', gallery_photo_path(@gallery, photo), method: :delete, data: {confirm: 'Are you sure you want to delete this beautiful photo?'}, class: "btn btn-danger glyphicon glyphicon-remove-sign" %>
+        <% end %>
       </div>
     </div>
   </div>
-  <br>
-  <% if photo.is_owner?(current_user) %>
-    <%= link_to ' Edit', edit_photo_path(photo), class: "btn btn-primary glyphicon glyphicon-edit" %> <%= link_to ' Delete', photo, method: :delete, data: {confirm: 'Are you sure you want to delete this beautiful photo?'}, class: "btn btn-danger glyphicon glyphicon-remove-sign" %>
-  <% end %>
 </div>

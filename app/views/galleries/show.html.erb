@@ -1,3 +1,14 @@
-<% render partial: "gallery", locals: {post: @gallery} %>
-<%= render @gallery %>
-<%= link_to ' Back', galleries_path, class: "btn btn-primary glyphicon glyphicon-arrow-left" %>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <h1><%= @gallery.title %></h1>
+      <%= simple_format @gallery.summary %>
+    </div>
+  </div>
+  <div class="row">
+    <%= render @gallery.photos %>
+  </div>
+  <br>
+  <br>
+  <%= link_to ' Back', galleries_path, class: "btn btn-primary glyphicon glyphicon-arrow-left" %>
+</div>

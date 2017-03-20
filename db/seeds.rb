@@ -8,7 +8,7 @@ require 'ffaker'
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-get_image = -> { "https://unsplash.it/400?#{rand(1..1013)}" }
+# get_image = -> { "https://unsplash.it/400?#{rand(1..1013)}" }
 
 5.times do
   user = User.create!(
@@ -23,13 +23,13 @@ get_image = -> { "https://unsplash.it/400?#{rand(1..1013)}" }
       title:      FFaker::Book.title,
       summary:    FFaker::Book.description,
       user_id:    user.id,
-      main_image: "https://unsplash.it/200/300?#{rand(1..1013)}"
+      main_image: "https://unsplash.it/200/300?image=#{rand(1..1013)}"
     )
     5.times do
       Photo.create!(
         name:       FFaker::Name.name,
         caption:    FFaker::BaconIpsum.sentence,
-        image:      "https://unsplash.it/200?#{rand(1..1013)}",
+        image:      "https://unsplash.it/200?image=#{rand(1..1013)}",
         gallery_id: gallery.id
       )
     end
