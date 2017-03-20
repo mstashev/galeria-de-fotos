@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row section-margin section">
+    <div class="col-sm-8">
+      <div class="row">
+        <h1 class="home-post-title"><%= @gallery.title.upcase %></h1>
+        <p class="col-sm-4 hdr-p">
+          <%= image_tag @gallery.user.personage, class: "media-object, img-circle" %>
+          <span id="user"><a href="/users/<%= @gallery.user.id %>"><%= @gallery.user.name %></a></span>
+        </p>
+        <p class="col-sm-4 date hdr-p">
+          on <a class="date" href="#"><%= @gallery.created_at.to_formatted_s(:long_ordinal) %></a>
+        </p>
+      </div>
+      <div class="row p-top media-body" id="p-no-margin">
+        <p>
+          <%= simple_format(@gallery.summary) %>
+        </p>
+      </div>
+      <div class="media-right photo">
+        <%= image_tag @gallery.main_photo.versions[:thumb].url, class: "img-responsive", alt: @gallery.title %>
+      </div>
+    </div>
+  </div>
+</div>

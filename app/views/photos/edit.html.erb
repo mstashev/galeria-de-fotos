@@ -1,0 +1,15 @@
+<div class="container">
+  <p id="notice"><%= notice %></p>
+  <div class="row section-margin section">
+    <div class="col-sm-8">
+      <div class="row">
+        <h1 class="home-post-title">Editing <%= @photo.name %></h1>
+      </div>
+      <div class="row p-top" id="p-no-margin">
+        <%= render 'form', post: @photo %><br>
+        <br>
+        <%= link_to 'Show', @photo %> | <%= link_to 'Back', photos_path %>
+      </div>
+    </div>
+  </div>
+</div>

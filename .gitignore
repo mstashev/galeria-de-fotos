@@ -15,3 +15,10 @@
 
 # Ignore Byebug command history file.
 .byebug_history
+
+# Ignore application configuration
+/config/application.yml
+sendgrid.env
+
+# Don't store temp image files in Github
+/public/uploads/*

@@ -1,0 +1,40 @@
+<div class="container">
+  <p id="notice"><%= notice %></p>
+  <div class="row">
+    <div class="col-md-9">
+      <!-- Main -->
+      <div class="row">
+        <div class="col-md-3">
+          <%= image_tag @user.personage, class: "img-responsive img-circle" %>
+          <% if current_user == @user %>
+            <%= link_to " Edit profile", edit_user_path(@user), class: "btn btn-primary glyphicon glyphicon-edit" %>
+          <% end %>
+          <%= link_to ' Back', users_path, class: "btn btn-primary glyphicon glyphicon-arrow-left" %>
+        </div>
+        <div class="col-md-9">
+          <h2>Name: <%= @user.name %></h2>
+          <h3>Username: <%= @user.username %></h3>
+          <% if @user.galleries.count > 0 %>
+            <%= render @user.galleries %>
+          <% else %>
+            <div class="container">
+              <p id="notice"><%= notice %></p>
+              <div class="row section-margin section">
+                <div class="col-sm-8">
+                  <div class="row">
+                    <p class="col-sm-4 hdr-p">
+                      No galleries yet!
+                    </p>
+                    <p class="col-sm-4 hdr-p">
+                      <%= link_to 'Create your first gallery!', new_gallery_path, class: "btn btn-primary glyphicon glyphicon-plus" %>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

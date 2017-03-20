@@ -1,0 +1,13 @@
+<div class="container">
+  <p id="notice"><%= notice %></p>
+  <div class="row section-margin section">
+    <div class="col-sm-8">
+      <div class="row">
+        <h1 class="home-post-title">Sharing <%= @gallery.title %></h1>
+      </div>
+      <div class="row p-top" id="p-no-margin">
+        <%= render 'form_share', post: @gallery %><br>
+      </div>
+    </div>
+  </div>
+</div>

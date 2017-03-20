@@ -1,0 +1,7 @@
+<h1>Log In!</h1>
+
+<%= simple_form_for :session do |form| %>
+  <%= form.input :username %>
+  <%= form.input :password %>
+  <%= form.button :submit, "Sign In!", class: "btn btn-primary gylphicon gylphicon-log-in" %>
+<% end %>

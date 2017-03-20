@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-4">
+      <%= simple_form_for :share_photo, html: {class: "form-horizontal"} do |form| %>
+        <%= form.input :email %>
+        <%= form.input :id, :as => :hidden, :input_html => { :value => params[:gallery_id] } %>
+        <%= form.button :submit, "Share", class: "btn btn-primary gylphicon gylphicon-share" %>
+      <% end %>
+    </div>
+  </div>
+</div>

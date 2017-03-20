@@ -1,0 +1,19 @@
+<div class="container">
+  <p id="notice"><%= notice %></p>
+
+  <h1>Photos</h1>
+  <%= paginate @photos %>
+
+
+  <% @photos.each do |photo| %>
+    <% render partial: "photos/photo", locals: {post: photo} %>
+  <% end %>
+
+  <%= render @photos %>
+
+  <%= paginate @photos %>
+  <br>
+  <div class="col-xs-12">
+    <%= link_to 'New Photo', new_photo_path %>
+  </div>
+</div>
