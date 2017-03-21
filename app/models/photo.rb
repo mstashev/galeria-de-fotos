@@ -4,7 +4,9 @@ class Photo < ApplicationRecord
 
   mount_uploader :photo, PhotoUploader
 
-  validates :name, :caption, :image, presence: true
+  default_scope {order ('created_at ASC') }
+
+  validates :name, :caption, presence: true
 
 
   def is_owner?(this_user)

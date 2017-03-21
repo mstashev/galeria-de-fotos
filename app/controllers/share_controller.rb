@@ -5,9 +5,10 @@ class ShareController < ApplicationController
   end
 
   def create
-    # if params[:share][:email]
-    # UserMailer.share(params[:id], params[:share][:email]).deliver
-    # flash[:success] = "Photo was shared with "
-    # redirect_to :
+    if params[:share][:email]
+      UserMailer.share(params[:id], params[:share][:email]).deliver
+      # flash[:success] = "Photo was shared with "
+      redirect_to @gallery
+    end
   end
 end

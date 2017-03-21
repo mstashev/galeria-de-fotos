@@ -3,9 +3,9 @@ Rails.application.routes.draw do
   root 'galleries#home'
 
   resources :galleries do
-    resources :shares, only: [:new, :create]
+    resources :share, only: [:new, :create]
     resources :photos do
-      resources :shares, only: [:new, :create]
+      resources :share, only: [:new, :create]
     end
   end
   resources :users

@@ -29,10 +29,11 @@
           <ul class="nav navbar-nav navbar-right">
             <li><a class="a-pad" href="#">About</a></li>
             <% if current_user %>
-              <li><%= link_to " Logout", logout_path, method: :delete, class: "btn btn-danger glyphicon glyphicon-log-out" %></li>
+              <li><%= link_to ' New Gallery', new_gallery_path, class: "btn btn-primary glyphicon glyphicon-plus" %></li>
+              <li><%= link_to ' Logout', logout_path, method: :delete, class: "btn btn-danger glyphicon glyphicon-log-out" %></li>
             <% else %>
-              <li><%= link_to " Signup", new_user_path, class: "btn btn-primary" %></li>
-              <li><%= link_to " Login", login_path, class: "btn btn-primary glyphicon glyphicon-log-in" %></li>
+              <li><%= link_to ' Signup', new_user_path, class: "btn btn-primary" %></li>
+              <li><%= link_to ' Login', login_path, class: "btn btn-primary glyphicon glyphicon-log-in" %></li>
             <% end %>
             <form class="navbar-form navbar-right">
               <div class="form-group has-feedback search">

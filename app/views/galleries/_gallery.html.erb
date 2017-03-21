@@ -3,7 +3,7 @@
   <div class="row section-margin section">
     <div class="col-sm-8">
       <div class="media-right photo">
-        <%= image_tag gallery.main_image, class: "img-responsive", alt: gallery.title %>
+        <%= image_tag gallery.cover_image, class: "img-responsive", alt: gallery.title %>
       </div>
       <div class="row">
         <h1 class="home-post-title"><a href="/galleries/<%= gallery.id %>" target="_blank"><%= gallery.title.upcase %></a></h1>
@@ -23,12 +23,12 @@
       <div class="lw-links">
         <a href="#"><i class="glyphicon glyphicon-comment"></i><span>Read Comments</span></a>
         <a href="#"><i class="glyphicon glyphicon-cloud-upload"></i><span>Upload</span></a>
-        <a href="/galleries/<%= gallery.id %>/share" id="blue-a"><i class="glyphicon glyphicon-envelope" id="blue-share"></i><span>Share this gallery</span></a>
+        <a href="<%=  new_gallery_share_path(gallery) %>" id="blue-a"><i class="glyphicon glyphicon-envelope" id="blue-share"></i><span>Share this gallery</span></a>
       </div>
     </div>
   </div>
   <br>
   <% if gallery.is_owner?(current_user) %>
-    <%= link_to ' Edit', edit_gallery_path(gallery), class: "btn btn-primary glyphicon glyphicon-edit" %> <%= link_to ' Delete', @gallery, method: :delete, data: {confirm: 'Are you sure you want to delete this beautiful gallery?'}, class: "btn btn-danger glyphicon glyphicon-remove-sign" %>
+    <%= link_to ' New Photo', new_gallery_photo_path(gallery), class: "btn btn-primary glyphicon glyphicon-plus" %> <%= link_to ' Edit', edit_gallery_path(gallery), class: "btn btn-primary glyphicon glyphicon-edit" %> <%= link_to ' Delete', @gallery, method: :delete, data: {confirm: 'Are you sure you want to delete this beautiful gallery?'}, class: "btn btn-danger glyphicon glyphicon-remove-sign" %>
   <% end %>
 </div>

@@ -8,13 +8,13 @@ class UserUploader < CarrierWave::Uploader::Base
   process :convert => 'png'
   process :tags => ['galleria_de_fotos','user_avatar']
 
- version :standard do
+  version :standard do
    process :resize_to_fill => [400, 400, :north]
- end
+  end
 
- version :thumbnail do
+  version :thumbnail do
    resize_to_fit(50, 50)
- end
+  end
 
   # Choose what kind of storage to use for this uploader:
   # storage :file

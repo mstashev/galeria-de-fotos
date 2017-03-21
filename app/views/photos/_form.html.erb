@@ -4,8 +4,7 @@
       <%= simple_form_for [@gallery, @photo], html: {class: "form-horizontal"} do |form| %>
         <%= form.input  :name %>
         <%= form.input  :caption %>
-        <%= form.input  :image %>
-
+        <%= form.input  :photo %>
         <%= form.button :submit %>
       <% end %>
     </div>

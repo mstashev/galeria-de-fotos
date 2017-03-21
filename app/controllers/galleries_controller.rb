@@ -48,7 +48,7 @@ class GalleriesController < ApplicationController
 
   def create
     @gallery = current_user.galleries.new(gallery_params)
-    if @gallery.save
+    if @gallery.save!
       redirect_to :root
     else
       render :new
@@ -64,7 +64,7 @@ class GalleriesController < ApplicationController
   private
 
   def gallery_params
-    params.require(:galleries).permit(:user_id, :title, :summary, :email, :main_image, :gallery_id)
+    params.require(:gallery).permit(:user_id, :title, :summary, :email, :main_image, :alt_image, :gallery_id)
   end
 
   def load_gallery

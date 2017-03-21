@@ -1,5 +1,5 @@
 class PhotosController < ApplicationController
-  before_action :find_gallery, only: [:edit, :show, :update]
+  before_action :find_gallery, only: [:new, :edit, :show, :update]
   before_action :find_photo, only: [:edit, :show, :update]
   before_action :require_user, only: [:edit, :show, :update]
   before_action :is_owner, only: [:destroy]
@@ -11,7 +11,13 @@ class PhotosController < ApplicationController
   end
 
   def new
-    @photo = Photo.new
+    if current_user
+      @gallery = Gallery.find(params[:gallery_id])
+      @photo = Photo.new
+    else
+      flash[:danger] = "You are not logged in."
+      redirect_to :root
+    end
   end
 
   def show
@@ -33,7 +39,7 @@ class PhotosController < ApplicationController
 
   def create
     @photo = current_user.photos.new(photo_params)
-    if @photo.save
+    if @photo.save!
       redirect_to :root
     else
       render :new
@@ -49,7 +55,7 @@ class PhotosController < ApplicationController
   private
 
   def photo_params
-    params.require(:photo).permit(:gallery_id, :image, :caption, :name, :email)
+    params.require(:photo).permit(:gallery_id, :photo, :image, :caption, :name, :email)
   end
 
   def find_gallery
